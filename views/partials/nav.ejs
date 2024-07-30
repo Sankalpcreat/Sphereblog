@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogsphere</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .navbar-custom {
+            background: linear-gradient(to right, #4b6cb7, #182848); /* Customize the gradient colors */
+        }
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif; /* Custom font for branding */
+        }
+        .nav-link {
+            color: white !important; /* Ensure links are white */
+        }
+        .btn-custom {
+            background-color: #4b6cb7; /* Customize button color */
+            border: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Blogsphere</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <% if (locals.user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/add-new"><i class="fas fa-plus"></i> Add Blog</a>
+                    </li>
+                    <% } %>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <% if (locals.user) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> Sankalp Singh
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/user/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-custom me-2" href="/user/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-custom" href="/user/signin">Login</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <% if (locals.error) { %>
+    <div class="container mt-4">
+        <div class="alert alert-danger" role="alert"><%= locals.error %></div>
+    </div>
+    <% } %>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
